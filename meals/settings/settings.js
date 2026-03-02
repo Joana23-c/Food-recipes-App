@@ -6,12 +6,13 @@ import data from '../data.json';
 
 export default function Settings(){
     const navigation = useNavigation();
-    const { username } = useContext(UserContext);
+    const { username,setUsername } = useContext(UserContext);
     const handlePressFav = () => {
          navigation.navigate('Fav');
         }
     const handlePressLogOut = () => {
-         navigation.navigate('Login');
+      setUsername(null);
+         navigation.replace('Login');
         }
         const gobacktohome = () => {
          navigation.navigate('Home');

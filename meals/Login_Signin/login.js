@@ -12,7 +12,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Vetëm një email dhe password për krahasim
+  // Vetem nje email dhe password per krahasim
 //   const validEmail = 'user@example.com';
 //   const validPassword = '123456';
 
@@ -22,15 +22,15 @@ export default function Login() {
 
    if (!trimmedEmail || !trimmedPassword) {
     if (Platform.OS === 'web') {
-      window.alert('Ju lutem plotësoni email dhe password');
+      window.alert('Ju lutem plotesoni email dhe password');
     } else {
-      Alert.alert('Gabim', 'Ju lutem plotësoni email dhe password');
+      Alert.alert('Gabim', 'Ju lutem plotesoni email dhe password');
     }
     return;
   }
 
     try {
-      // Merr të dhënat nga AsyncStorage
+      // Merr te dhenat nga AsyncStorage
        const usersJSON = await AsyncStorage.getItem('users');
        const users = usersJSON ? JSON.parse(usersJSON) : [];
 
@@ -39,9 +39,9 @@ export default function Login() {
 
      if (user) {
       if (Platform.OS === 'web') {
-        window.alert(`Mirësevini ${user.username}!`);
+        window.alert(`Miresevini ${user.username}!`);
       } else {
-        Alert.alert('Sukses', `Mirësevini ${user.username}!`);
+        Alert.alert('Sukses', `Miresevini ${user.username}!`);
       }
 
       //vendos ne kontekst usename

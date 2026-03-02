@@ -128,7 +128,7 @@ export default function Detail() {
      const showAllStorage = async () => {
         const usersJSON = await AsyncStorage.getItem('users');
         const x = usersJSON ? JSON.parse(usersJSON) : [];
-        console.log('Të gjithë user-at:', x);
+        console.log('Te gjithe user-at:', x);
     };
     return(
         <View style={styles.body}>
@@ -163,7 +163,7 @@ export default function Detail() {
             </View>
 
             <View style={styles.det}>
-             {activeComponent === 1 ? ( <About info={item.about} />) : activeComponent === 2 ? (<Instructions info={item.instruction} />) : (<Text>Zgjedh një komponent</Text>)}
+             {activeComponent === 1 ? ( <About info={item.about} />) : activeComponent === 2 ? (<Instructions info={item.instruction} />) : (<Text>Zgjidh nje komponent</Text>)}
             </View>
 
             <View style={[styles.img,{justifyContent : 'center',}]}>

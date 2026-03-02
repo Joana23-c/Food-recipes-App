@@ -26,9 +26,9 @@ export default function SignIn() {
 
     if (trimmedEmail === '' || !emailCheck(trimmedEmail) || trimmedPassword === '' || !passCheck(trimmedPassword) || trimmedUsername=== '' || !userNamemcheck(trimmedUsername)) {
       if (Platform.OS === 'web') {
-        window.alert('Ju lutem plotësoni kredencialet e duhura');
+        window.alert('Ju lutem plotesoni kredencialet e duhura');
       } else {
-        Alert.alert('Gabim', 'Ju lutem plotësoni krendencialet e duhura');
+        Alert.alert('Gabim', 'Ju lutem plotesoni krendencialet e duhura');
       }
       return;
     } 
@@ -41,9 +41,9 @@ export default function SignIn() {
       if (emailExists) {
         
         if (Platform.OS === 'web') {
-          window.alert('Ky email është regjistruar tashmë! Shko te Login.');
+          window.alert('Ky email eshte regjistruar tashme! Shko te Login.');
         } else {
-          Alert.alert('Info', 'Ky email është regjistruar tashmë! Shko te Login.');
+          Alert.alert('Info', 'Ky email eshte regjistruar tashme! Shko te Login.');
         }
         console.log('Storage ne login kur useri eshte i regjistruara me pare')
         showAllStorage();
@@ -153,9 +153,9 @@ const clearAllStorage = async () => {
   try {
     await AsyncStorage.clear();
     console.log('AsyncStorage u pastrua komplet!');
-    alert('Të gjitha të dhënat u fshinë');
+    alert('Te gjitha te dhenat u fshine');
   } catch (error) {
-    console.log('Gabim gjatë fshirjes së AsyncStorage:', error);
+    console.log('Gabim gjate fshirjes se AsyncStorage:', error);
   }
 };
 
@@ -172,6 +172,6 @@ const passCheck = (str) => {
 const showAllStorage = async () => {
   const usersJSON = await AsyncStorage.getItem('users');
   const users = usersJSON ? JSON.parse(usersJSON) : [];
-  console.log('Të gjithë user-at:', users);
+  console.log('Te gjithe user-at:', users);
 };
 
