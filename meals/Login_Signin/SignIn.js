@@ -37,7 +37,7 @@ export default function SignIn() {
     const users = usersJSON ? JSON.parse(usersJSON) : [];
 
     
-    const emailExists = users.some(u => u.email === trimmedEmail);
+    const emailExists = users.some(u => u.email === trimmedEmail); 
       if (emailExists) {
         
         if (Platform.OS === 'web') {

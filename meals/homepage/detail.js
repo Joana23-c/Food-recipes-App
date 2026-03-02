@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import data from '../data.json';
 import About from './about.js';
 import Instructions from './instructions.js';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 const images = {
   "Japanesecheesecake-scaled.jpg": require('../images/Japanesecheesecake-scaled.jpg'),
@@ -27,7 +27,7 @@ export default function Detail() {
     const gobacktohome = () => {
          navigation.navigate('Home');}
         const gotoSettings = () => {
-         navigation.navigate('Settings');
+    navigation.navigate('Settings');
         }
         
     const item = data.find(i => i.id === id);
@@ -43,6 +43,58 @@ export default function Detail() {
     // }
 
      const [activeComponent, setActiveComponent] = useState(1);
+
+     const [btnstate, setBtn] = useState(0);
+
+     useEffect(  () =>{
+      const start = async () => {
+      const usersJSON = await AsyncStorage.getItem('users');
+      const users = usersJSON ? JSON.parse(usersJSON) : [];
+
+      const user = users.find(u =>u.username ===username );
+            if(!user){
+             console.log("useri nuk ekziston");
+                return;
+            }
+            let favourites = user.favourites || [];
+            if(favourites.includes(id)){
+              setBtn(1);
+            }else {
+              setBtn(0);
+            }
+          }
+           start(); 
+     },[]);
+     
+     const removefromfv = async () => {
+       try{
+            const usersJSON = await AsyncStorage.getItem('users');
+            const users = usersJSON ? JSON.parse(usersJSON) : [];
+
+            const user = users.find(u =>u.username ===username );
+            if(!user){
+             console.log("useri nuk ekziston");
+                return;
+            }
+            let favourites = user.favourites || [];
+            if (favourites.includes(id)) {
+            favourites = favourites.filter(item => item !== id);
+              }
+              
+              user.favourites = favourites;
+              
+              await AsyncStorage.setItem('users', JSON.stringify(users));
+
+              console.log('Success', 'Recipe added to favourites!');
+              showAllStorage();
+
+              setBtn(0);
+
+        }catch(error){
+            console.log('Error saving favourites: ', error);
+        }
+
+     }
      
      const addtofv = async () => {
         try{
@@ -65,6 +117,7 @@ export default function Detail() {
 
               console.log('Success', 'Recipe added to favourites!');
               showAllStorage();
+              setBtn(1);
 
         }catch(error){
             console.log('Error saving favourites: ', error);
@@ -104,7 +157,7 @@ export default function Detail() {
                <Text style={styles.hellotxt}>{item.category} / {item.time} minutes</Text>
             </View>
 
-            <View style={[styles.img,{justifyContent : 'none',marginLeft:30,}]}>
+            <View style={[styles.img,{justifyContent : 'flex-start',marginLeft:30,}]}>
                 <Button title="About" color="#6E3089" onPress={() => setActiveComponent(1)}></Button>
                 <Button title="Instructions" color="#7b777d"  onPress={() => setActiveComponent(2)}></Button>
             </View>
@@ -114,7 +167,10 @@ export default function Detail() {
             </View>
 
             <View style={[styles.img,{justifyContent : 'center',}]}>
-                <Button title="Add To favourites" color="red" onPress={addtofv}></Button>
+              {
+                btnstate === 0 ? (<Button title="Add To favourites" color="red" onPress={addtofv}></Button>) : (<Button title="Remove favourites" color="red" onPress={removefromfv}></Button>)
+              }
+                
             </View>
           </View>
         </View>

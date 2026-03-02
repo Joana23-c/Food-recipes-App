@@ -44,7 +44,7 @@ export default function Login() {
         Alert.alert('Sukses', `Mirësevini ${user.username}!`);
       }
 
-      //vnedos ne kontekst usename
+      //vendos ne kontekst usename
        setUsername(user.username);
       // navigation.navigate('Home', { username: user.username });
       navigation.replace('Home');

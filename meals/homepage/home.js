@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
 import { UserContext } from '../UserContext.js';
 import Card from './card.js';
-import data from '../data.json';
+import  data from '../data.json';
 import Detail from './detail.js'
 
 
@@ -54,7 +54,7 @@ const gotoSettings = () => {
         <Text style={[styles.title, { marginTop: 12, marginBottom : -15 }]}>Popular Recipes</Text>
    </View>
 
-    <ScrollView horizontal style={{maxHeight:300}}>
+    <ScrollView horizontal={true} style={{maxHeight:300}}>
       {data.map((i) => (
        <TouchableOpacity key={i.id} onPress={() =>handlePress(i.id)}>
         <Card
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 15,
+    zIndex:10,
   },
 
   logo: {
