@@ -1,4 +1,4 @@
-# Meals app (food recipes)
+# Meals app (food recipes)  (react native + js)
 
 Ky projekt eshte nje aplikacion per receta gatimi i zhvilluar në kuader të kursit per pervetesimin e react native. 
 Aplikacioni mundeson regjistrimin dhe logimin e perdoruesve, shfaqjen e recetave me popular, detaje te plota per perberesit dhe menyren e pergatitjes, ruajtjen e recetave te preferuara, shperndarjen e tyre si dhe vendosjen e rikujtesave ditore. 
